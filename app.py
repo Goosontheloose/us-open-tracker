@@ -50,7 +50,7 @@ TEAMS = {
     "Wynand 2": ["Hideki Matsuyama", "Viktor Hovland", "Ludvig Åberg"],
     "Rupert 2": ["Scottie Scheffler", "Hideki Matsuyama", "Brooks Koepka"],
     "Frederik 2": ["Jordan Spieth", "Viktor Hovland", "Tommy Fleetwood"],
-    "Gustav" 2: ["Viktor Hovland", "Tyrrell Hatton", "Cameron Smith"]
+    "Gustav 2": ["Viktor Hovland", "Tyrrell Hatton", "Cameron Smith"]
 }
 
 def parse_score(val):
