@@ -2,8 +2,9 @@ import streamlit as st
 import requests
 import pandas as pd
 from datetime import datetime
-from collections import Counter      # Ensure this is here
-from itertools import combinations    # Ensure this is here
+from collections import Counter      
+from itertools import combinations    
+
 # --- 1. SETTINGS & BRANDING ---
 st.set_page_config(page_title="The US OPEN 2026", layout="wide")
 
@@ -197,35 +198,20 @@ ZT Project (Entry 7)	Patrick Reed	Matt Fitzpatrick	Shane Lowry
 ZT Project (Entry 8)	Jon Rahm	Justin Rose	Corey Conners
 ZT Project (Entry 9)	Matt Fitzpatrick	Xander Schauffele	J.T. Poston
 Frederik	Rory McIlroy	Bryson DeChambeau	Scottie Scheffler
-
 """
+
 def get_teams(raw_text):
     teams_dict = {}
     lines = raw_text.strip().split('\n')
     for line in lines:
-        parts = line.split('\t') # Split by Excel tabs
+        parts = line.split('\t')
         if len(parts) >= 2:
             user = parts[0].strip()
-            # Everything after the first column is a golfer
             golfers = [g.strip() for g in parts[1:] if g.strip()]
             teams_dict[user] = golfers
     return teams_dict
 
 TEAMS = get_teams(RAW_DATA)
-# --- SYNDICATE ANALYTICS ENGINE ---
-
-# 1. Exact Triplets (3/3 same players)
-# We sort names to ensure "Tiger, Rory" is same as "Rory, Tiger"
-triplet_counts = Counter([tuple(sorted(players)) for players in TEAMS.values()])
-exact_triplets = {k: v for k, v in triplet_counts.items() if v > 1}
-
-# 2. Common Duos (2/3 same players)
-all_duos = []
-for players in TEAMS.values():
-    all_duos.extend(combinations(sorted(players), 2))
-duo_counts = Counter(all_duos).most_common(5) # Top 5 most common pairs
-
-# --- DISPLAY ANALYTICS ---
 
 def parse_score(val):
     if not val or str(val).upper() in ["E", "EVEN", "CUT"]: return 0
@@ -248,21 +234,36 @@ def main():
     rows = get_data()
     
     if rows:
+        # --- ANALYTICS (HIVE MIND) ---
         st.markdown("### 📊 THE HIVE MIND (COMBINATIONS)")
-col_a, col_b = st.columns(2)
+        col_a, col_b = st.columns(2)
 
-with col_a:
-    st.write("**Exact Same Team (3/3)**")
-    if exact_triplets:
-        for players, count in exact_triplets.items():
-            st.info(f"{count} people picked: {', '.join(players)}")
-    else:
-        st.write("Every team is unique!")
+        # 1. Exact Triplets
+        triplet_counts = Counter([tuple(sorted(players)) for players in TEAMS.values()])
+        exact_triplets = {k: v for k, v in triplet_counts.items() if v > 1}
 
-with col_b:
-    st.write("**Most Common Pairings (2/3)**")
-    for duo, count in duo_counts:
-        st.success(f"{count} people paired: {duo[0]} + {duo[1]}")
+        # 2. Common Duos
+        all_duos = []
+        for players in TEAMS.values():
+            all_duos.extend(combinations(sorted(players), 2))
+        duo_counts = Counter(all_duos).most_common(5)
+
+        with col_a:
+            st.write("**Exact Same Team (3/3)**")
+            if exact_triplets:
+                for players, count in exact_triplets.items():
+                    st.info(f"{count} people picked: {', '.join(players)}")
+            else:
+                st.write("Every team is unique!")
+
+        with col_b:
+            st.write("**Most Common Pairings (2/3)**")
+            for duo, count in duo_counts:
+                st.success(f"{count} people paired: {duo[0]} + {duo[1]}")
+
+        st.markdown("---")
+
+        # --- LEADERBOARD LOGIC ---
         player_map = {}
         pro_field = []
         all_picks = []
@@ -279,35 +280,30 @@ with col_b:
                 "Thru": thru
             })
 
-            results = []
+        results = []
         for user, roster in TEAMS.items():
             total = 0
             html = ""
             for p in roster:
                 all_picks.append(p)
-                
-                # 1. Check if the player actually exists in the API data
                 if p.lower() in player_map:
                     p_data = player_map[p.lower()]
                     score_val = p_data['score']
                     thru_val = p_data['thru']
-                    total += score_val # Add to team total
-                    # Format the score display
+                    total += score_val
                     s = "E" if score_val == 0 else f"{'+' if score_val > 0 else ''}{score_val}"
                 else:
-                    # 2. If NOT found, set display to "Not Found" and thru to "???"
                     s = "Not Found"
                     thru_val = "???"
-                    # (Note: total stays the same, effectively treating them as 0/Even)
 
-                html += f'<div class="player-row"><span>{p}</span><span><b style="color: {"red" if s == "Not Found" else "inherit"}">{s}</b> <small>[{thru_val}]</small></span></div>'
+                html += f'<div class="player-row"><span>{p}</span><span><b>{s}</b> <small>[{thru_val}]</small></span></div>'
             
             results.append({"User": user, "Total": total, "HTML": html})
 
         df = pd.DataFrame(results).sort_values("Total")
         df.insert(0, 'Rank', range(1, len(df) + 1))
 
-        # 1. CHAMPIONSHIP FLIGHT (TOP 5)
+        # --- UI DISPLAY ---
         st.markdown("### TOP 5 LEADERS")
         cols = st.columns(5)
         for i, (_, r) in enumerate(df.head(5).iterrows()):
@@ -315,51 +311,34 @@ with col_b:
                 disp = "E" if r['Total'] == 0 else f"{'+' if r['Total'] > 0 else ''}{r['Total']}"
                 st.markdown(f'<div class="podium-card"><div class="user-name">#{r["Rank"]} {r["User"]}</div><div class="podium-score">{disp}</div>{r["HTML"]}</div>', unsafe_allow_html=True)
 
-     # 2. DERBY STANDINGS (Cleaned Table)
         st.markdown("### STANDINGS")
-        
         expanded_results = []
-        # CHANGE: We now use 'df.iterrows()' to get the data that includes the Rank
         for _, res in df.iterrows():
-            row = {
-                "Rank": res["Rank"],
-                "User": res["User"],
-                "Total": f"+{res['Total']}" if res['Total'] > 0 else ("E" if res['Total'] == 0 else res['Total'])
-            }
-            
-            # Get the roster for this user
+            row = {"Rank": res["Rank"], "User": res["User"], "Total": f"+{res['Total']}" if res['Total'] > 0 else ("E" if res['Total'] == 0 else res['Total'])}
             roster = TEAMS.get(res["User"], [])
             for i, p_name in enumerate(roster):
                 p_key = p_name.lower()
+                s_text = "-"
                 if p_key in player_map:
-                    p_data = player_map[p_key]
-                    s_val = p_data['score']
+                    s_val = player_map[p_key]['score']
                     s_text = "E" if s_val == 0 else f"{'+' if s_val > 0 else ''}{s_val}"
-                else:
-                    s_text = "-"
                 row[f"Player {i+1}"] = f"{p_name} ({s_text})"
-            
             expanded_results.append(row)
 
-        standings_df = pd.DataFrame(expanded_results)
-        st.dataframe(standings_df, hide_index=True, use_container_width=True)
+        st.dataframe(pd.DataFrame(expanded_results), hide_index=True, use_container_width=True)
 
-        # 3. MASTER FIELD LEADERBOARD
         st.markdown("### ⛳ US OPEN LIVE LEADERBOARD")
         st.dataframe(pd.DataFrame(pro_field).set_index("Pos"), use_container_width=True)
 
-        # 4. MARKET SENTIMENT (Bottom Section)
         st.markdown("### 📊 WHO DID MOST PEOPLE BET ON?")
         counts = pd.Series(all_picks).value_counts()
         m_val = counts.max()
-        
         s_html = '<div class="sentiment-box">'
         for name, count in counts.items():
             w = int((count / m_val) * 100)
             s_html += f'<div class="s-row"><div class="s-label"><span>{name}</span><span>{count} PICKS</span></div><div class="s-bar-bg"><div class="s-bar-fill" style="width:{w}%;"></div></div></div>'
         s_html += '</div>'
         st.write(s_html, unsafe_allow_html=True)
-
     else:
         st.error("Waiting for tournament data...")
 
