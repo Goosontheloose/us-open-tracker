@@ -3,7 +3,7 @@ import requests
 import pandas as pd
 from datetime import datetime
 
-# --- 1. CORE CONFIG ---
+# --- 1. SETTINGS ---
 st.set_page_config(page_title="The Syndicate Derby", layout="wide")
 
 st.markdown("""
@@ -14,7 +14,6 @@ st.markdown("""
     .podium-score { font-family: 'Inter', sans-serif; font-weight: 900; color: #064E3B; font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1; margin: 5px 0; }
     .user-name { font-family: 'Inter', sans-serif; text-transform: uppercase; font-weight: 900; color: #064E3B; font-size: 1.1rem; }
     .player-row { font-size: 0.85rem; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 4px 0; }
-    @media (max-width: 767px) { .podium-card { padding: 1rem; box-shadow: 4px 4px 0px #064E3B; } }
 </style>
 """, unsafe_allow_html=True)
 
@@ -34,75 +33,84 @@ def get_leaderboard():
     try:
         response = requests.get(url, headers=headers, params=params)
         return response.json().get('leaderboardRows', [])
-    except:
+    except Exception as e:
+        st.error(f"API Error: {e}")
         return []
 
 def run_app():
-    data = get_leaderboard()
+    api_data = get_leaderboard()
     
-    # --- 3. THE REPAIR LOGIC ---
-    scores = {}
-    for row in data:
-        fname = row.get('firstName', '')
-        lname = row.get('lastName', '')
-        full_name = f"{fname} {lname}".strip().lower()
+    # 3. BUILD A CLEAN PLAYER MAP
+    master_scores = {}
+    for row in api_data:
+        full_name = f"{row.get('firstName', '')} {row.get('lastName', '')}".strip().lower()
+        # Use toParValue (integer) if it exists, otherwise try to parse toPar string
+        raw_score = row.get('toParValue')
+        if raw_score is None:
+            tp = str(row.get('toPar', '0')).upper()
+            raw_score = 0 if tp == 'E' or tp == '' else int(tp.replace('+', ''))
         
-        # Check multiple possible keys for the score
-        # Some versions of this API use 'toParValue', some use 'totalToPar', some use 'toPar'
-        raw_val = row.get('toParValue') or row.get('totalToPar') or row.get('toPar') or 0
-        
-        try:
-            # Handle cases where score is a string like "+2" or "E"
-            if str(raw_val).upper() == "E":
-                clean_score = 0
-            else:
-                clean_score = int(raw_val)
-        except:
-            clean_score = 0
-            
-        scores[full_name] = {
-            "score": clean_score,
+        master_scores[full_name] = {
+            "score": int(raw_score),
             "thru": row.get('thru', '-')
         }
 
-    # Process Teams
+    # 4. PROCESS TEAMS WITH FUZZY MATCHING
     results = []
+    match_diagnostics = []
+
     for line in RAW_EXCEL_DATA.strip().split('\n'):
         parts = line.split('\t')
-        user, picks = parts[0], parts[1:]
-        total, details = 0, []
-        for p in picks:
-            p_data = scores.get(p.lower(), {"score": 0, "thru": "-"})
-            s = p_data['score']
-            total += s
+        user = parts[0]
+        picks = parts[1:]
+        
+        total_score = 0
+        html_details = []
+        
+        for pick in picks:
+            pick_clean = pick.strip().lower()
+            found_data = None
+            
+            # Look for the pick in our master list (Fuzzy Match)
+            for api_name, data in master_scores.items():
+                if pick_clean in api_name or api_name in pick_clean:
+                    found_data = data
+                    match_diagnostics.append({"Pick": pick, "Status": "✅ Found", "Matched As": api_name})
+                    break
+            
+            if not found_data:
+                found_data = {"score": 0, "thru": "N/A"}
+                match_diagnostics.append({"Pick": pick, "Status": "❌ NOT FOUND", "Matched As": "None"})
+
+            s = found_data['score']
+            total_score += s
             s_str = "E" if s == 0 else f"{'+' if s > 0 else ''}{s}"
-            details.append(f'<div class="player-row"><span>{p}</span><span><b>{s_str}</b> [{p_data["thru"]}]</span></div>')
-        results.append({"User": user, "Total": total, "HTML": "".join(details)})
+            html_details.append(f'<div class="player-row"><span>{pick}</span><span><b>{s_str}</b> [{found_data["thru"]}]</span></div>')
+            
+        results.append({"User": user, "Total": total_score, "HTML": "".join(html_details)})
 
+    # --- 5. UI DISPLAY ---
     df = pd.DataFrame(results).sort_values("Total")
-
-    # --- 4. DISPLAY ---
     st.markdown("<h1 style='color:#064E3B; font-family:Inter; font-weight:900;'>🏆 THE SYNDICATE DERBY</h1>", unsafe_allow_html=True)
-    
+
     cols = st.columns(3)
     for i, (_, row) in enumerate(df.head(3).iterrows()):
         with cols[i]:
             disp = "E" if row['Total'] == 0 else f"{'+' if row['Total'] > 0 else ''}{row['Total']}"
-            st.markdown(f'<div class="podium-card"><div class="user-name">#{i+1} {row["User"]}</div><div class="podium-score">{disp}</div>{row["HTML"]}</div>', unsafe_allow_html=True)
+            st.markdown(f"""
+                <div class="podium-card">
+                    <div class="user-name">#{i+1} {row['User']}</div>
+                    <div class="podium-score">{disp}</div>
+                    {row['HTML']}
+                </div>
+            """, unsafe_allow_html=True)
 
     st.markdown("### FULL STANDINGS")
-    display_df = df[["User", "Total"]].copy()
-    display_df["Total"] = display_df["Total"].apply(lambda x: f"+{x}" if x > 0 else ("E" if x == 0 else x))
-    st.table(display_df.set_index("User"))
+    st.table(df[["User", "Total"]].set_index("User"))
 
-    # --- 5. SYSTEM CHECK (ONLY IF SCORES ARE ZERO) ---
-    if df["Total"].abs().sum() == 0:
-        with st.expander("🛠 SYSTEM CHECK - COPY THIS IF SCORES ARE STILL 'E'"):
-            if data:
-                st.write("Found keys in API:", list(data[0].keys()))
-                st.write("Sample Player Data:", data[0])
-            else:
-                st.write("No data received from API. Check your API Key.")
+    # --- 6. TRUTH CHECK ---
+    with st.expander("🛠 DATA MATCHING STATUS (Check here if scores are 'E')"):
+        st.write("This shows if the app successfully connected your Excel names to the live API names.")
+        st.table(pd.DataFrame(match_diagnostics))
 
 run_app()
-st.caption(f"Last Sync: {datetime.now().strftime('%H:%M:%S')}")
