@@ -3,21 +3,62 @@ import requests
 import pandas as pd
 from datetime import datetime
 
-# --- 1. SETTINGS & STYLE ---
+# --- 1. SETTINGS & MOBILE FIXES ---
 st.set_page_config(page_title="The Syndicate Derby", layout="wide")
 
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
     .stApp { background-color: #F5F5F4; }
-    .podium-card { padding: 1.2rem; border: 4px solid #064E3B; background-color: white; box-shadow: 8px 8px 0px #064E3B; margin-bottom: 20px; }
-    .podium-score { font-family: 'Inter', sans-serif; font-weight: 900; color: #064E3B; font-size: clamp(2.5rem, 8vw, 4rem); line-height: 1; margin: 5px 0; }
-    .user-name { font-family: 'Inter', sans-serif; text-transform: uppercase; font-weight: 900; color: #064E3B; font-size: 1.1rem; }
-    .player-row { font-size: 0.85rem; display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding: 4px 0; min-height: 25px; align-items: center; }
+    
+    /* Podium Card - Desktop & Mobile */
+    .podium-card { 
+        padding: 1.2rem; 
+        border: 4px solid #064E3B; 
+        background-color: white; 
+        box-shadow: 8px 8px 0px #064E3B; 
+        margin-bottom: 20px; 
+    }
+    
+    /* Responsive Score Text */
+    .podium-score { 
+        font-family: 'Inter', sans-serif; 
+        font-weight: 900; 
+        color: #064E3B; 
+        font-size: clamp(2.5rem, 8vw, 4rem); 
+        line-height: 1; 
+        margin: 5px 0; 
+    }
+    
+    .user-name { 
+        font-family: 'Inter', sans-serif; 
+        text-transform: uppercase; 
+        font-weight: 900; 
+        color: #064E3B; 
+        font-size: 1.1rem; 
+    }
+
+    .player-row { 
+        font-size: 0.85rem; 
+        display: flex; 
+        justify-content: space-between; 
+        border-bottom: 1px solid #eee; 
+        padding: 4px 0; 
+        min-height: 25px; 
+        align-items: center; 
+    }
+
+    /* MOBILE: Force columns to stack vertically so details aren't clipped */
+    @media (max-width: 768px) {
+        [data-testid="column"] {
+            width: 100% !important;
+            flex: 1 1 100% !important;
+        }
+    }
 </style>
 """, unsafe_allow_html=True)
 
-# --- 2. DATA INPUT ---
+# --- 2. DATA INPUT (Yesterday's version) ---
 TEAMS = {
     "Martin": ["Bryson DeChambeau", "Scottie Scheffler", "Rory McIlroy"],
     "Wynand": ["Patrick Cantlay", "Xander Schauffele", "Ludvig Aberg"],
@@ -25,7 +66,7 @@ TEAMS = {
     "Frederik": ["Jordan Spieth", "Viktor Hovland", "Tommy Fleetwood"]
 }
 
-# --- 3. HELPER LOGIC ---
+# --- 3. LOGIC (Reverted to the version that worked) ---
 def parse_score(val):
     if not val or str(val).upper() in ["E", "EVEN", "CUT"]:
         return 0
@@ -55,19 +96,19 @@ def run_app():
     rows = get_leaderboard_data()
     
     if rows:
-        # Create Player Map (Using 'total' key as per your working version)
+        # Create Player Map using 'total' logic
         player_scores = {}
         for row in rows:
             fname = row.get('firstName', '').strip()
             lname = row.get('lastName', '').strip()
             full_name = f"{fname} {lname}".lower()
+            # THIS IS THE KEY FIELD FROM YESTERDAY
             raw_score = row.get('total', '0') 
             player_scores[full_name] = {
                 "score": parse_score(raw_score),
                 "thru": row.get('thru', 'F')
             }
 
-        # Calculate Team Standings
         leaderboard_results = []
         for friend, roster in TEAMS.items():
             total_score = 0
@@ -79,15 +120,11 @@ def run_app():
                 s_str = "E" if p_score == 0 else f"{'+' if p_score > 0 else ''}{p_score}"
                 roster_html += f'<div class="player-row"><span>{p_name}</span><span><b>{s_str}</b> [{p_data["thru"]}]</span></div>'
             
-            leaderboard_results.append({
-                "User": friend,
-                "Total": total_score,
-                "HTML": roster_html
-            })
+            leaderboard_results.append({"User": friend, "Total": total_score, "HTML": roster_html})
 
         df = pd.DataFrame(leaderboard_results).sort_values(by="Total")
 
-        # Display Top 3 Podium
+        # Display
         cols = st.columns(3)
         for i, (_, row) in enumerate(df.head(3).iterrows()):
             with cols[i]:
@@ -101,9 +138,7 @@ def run_app():
                 """, unsafe_allow_html=True)
 
         st.markdown("### FULL STANDINGS")
-        display_df = df[["User", "Total"]].copy()
-        display_df["Total"] = display_df["Total"].apply(lambda x: f"+{x}" if x > 0 else ("E" if x == 0 else x))
-        st.table(display_df.set_index("User"))
+        st.table(df[["User", "Total"]].set_index("User"))
     else:
         st.error("Could not fetch leaderboard data.")
 
