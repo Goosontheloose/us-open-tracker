@@ -191,7 +191,7 @@ Christiaan Daniels	Patrick Reed	Justin Thomas	Keegan Bradley
 Christiaan Daniels	Scottie Scheffler	Sam Burns	Wyndham Clark
 Lauren Coetser	Scottie Scheffler	Xander Schauffele	Joaquin Niemann
 Johann Lubbe	Scottie Scheffler	Rory McIlroy	Keegan Bradley
-27720236344	Scottie Scheffler	Rory McIlroy	Ben Kohles
+Derick Kunz	Scottie Scheffler	Rory McIlroy	Ben Kohles
 AJ Hechter	Matt Fitzpatrick	Tyrrell Hatton	Min Woo Lee
 Duncan Stevens	Scottie Scheffler	Xander Schauffele	Bryson DeChambeau
 Duncan Stevens	Scottie Scheffler	Matt Fitzpatrick	Shane Lowry
@@ -217,21 +217,36 @@ Ettienne Bedeker	Scottie Scheffler	Rory McIlroy	Brian Harman
 Ettienne Bedeker	Matt Fitzpatrick	Xander Schauffele	Cameron Smith
 Tinus Steyn	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
 Tinus Steyn	Scottie Scheffler	Jon Rahm	Brooks Koepka
-Tinus Steyn Rory McIlroy	Cameron Young	Bryson DeChambeau
+Tinus Steyn	Rory McIlroy	Cameron Young	Bryson DeChambeau
 Cornel Windell	Scottie Scheffler	Rory McIlroy	Joaquin Niemann
-Frederik Matt Fitzpatrick	Tyrrell Hatton	Joaquin Niemann
+Frederik	Matt Fitzpatrick	Tyrrell Hatton	Joaquin Niemann
+
 """
+
+import re
 
 def get_teams(raw_text):
     teams_dict = {}
     lines = raw_text.strip().split('\n')
     for line in lines:
-        parts = line.split('\t')
+        # This regex looks for 2 or more spaces OR a tab as the separator
+        parts = re.split(r'\t|\s{2,}', line.strip())
+        
         if len(parts) >= 2:
             user = parts[0].strip()
+            # The rest are the golfers
             golfers = [g.strip() for g in parts[1:] if g.strip()]
+            
+            # If the user already exists (like 'Braam Greyling'), we create a unique key
+            # so we don't overwrite their other entries
+            base_user = user
+            counter = 1
+            while user in teams_dict:
+                user = f"{base_user} ({counter})"
+                counter += 1
+                
             teams_dict[user] = golfers
-    return teams_dict
+    return teams_dic
 
 TEAMS = get_teams(RAW_DATA)
 
