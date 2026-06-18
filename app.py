@@ -284,7 +284,7 @@ def main():
                 disp = "E" if r['Total'] == 0 else f"{'+' if r['Total'] > 0 else ''}{r['Total']}"
                 st.markdown(f'<div class="podium-card"><div class="user-name">#{r["Rank"]} {r["User"]}</div><div class="podium-score">{disp}</div>{r["HTML"]}</div>', unsafe_allow_html=True)
 
-        # 2. DERBY STANDINGS (Cleaned Table)
+     # 2. DERBY STANDINGS (Cleaned Table)
             st.markdown("### STANDINGS")
         
         expanded_results = []
