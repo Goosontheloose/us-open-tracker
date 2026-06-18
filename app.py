@@ -45,7 +45,7 @@ TEAMS = {
     "Wynand": ["Patrick Cantlay", "Xander Schauffele", "Ludvig Åberg"],
     "Rupert": ["Collin Morikawa", "Hideki Matsuyama", "Brooks Koepka"],
     "Frederik": ["Jordan Spieth", "Viktor Hovland", "Tommy Fleetwood"],
-    "Gustav": ["Jon Rahm", "Tyrrell Hatton", "Cameron Smith"]
+    "Gustav": ["Jon Rahm", "Tyrrell Hatton", "Cameron Smith"],
     "Martin 2": ["Bryson DeChambeau", "Cameron Smith", "Rory McIlroy"],
     "Wynand 2": ["Hideki Matsuyama", "Viktor Hovland", "Ludvig Åberg"],
     "Rupert 2": ["Scottie Scheffler", "Hideki Matsuyama", "Brooks Koepka"],
