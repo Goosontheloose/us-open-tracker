@@ -90,7 +90,8 @@ def main():
             results.append({"User": user, "Total": total, "HTML": html})
 
         df = pd.DataFrame(results).sort_values("Total")
-        df['Rank'] = range(1, len(df) + 1)
+        # Explicitly set the Rank column based on the sorted order
+        df.insert(0, 'Rank', range(1, len(df) + 1))
 
         # 1. CHAMPIONSHIP FLIGHT (TOP 5)
         st.markdown("### CHAMPIONSHIP FLIGHT")
@@ -100,17 +101,18 @@ def main():
                 disp = "E" if r['Total'] == 0 else f"{'+' if r['Total'] > 0 else ''}{r['Total']}"
                 st.markdown(f'<div class="podium-card"><div class="user-name">#{r["Rank"]} {r["User"]}</div><div class="podium-score">{disp}</div>{r["HTML"]}</div>', unsafe_allow_html=True)
 
-        # 2. DERBY STANDINGS (Full Table with Rank)
+        # 2. DERBY STANDINGS (Table with Explicit Rank column)
         st.markdown("### DERBY STANDINGS")
         standings_df = df[["Rank", "User", "Total"]].copy()
         standings_df["Total"] = standings_df["Total"].apply(lambda x: f"+{x}" if x > 0 else ("E" if x == 0 else x))
-        st.table(standings_df.set_index("Rank"))
+        # Hide the default dataframe index to only show our Rank column
+        st.table(standings_df.assign(hack='').set_index('hack'))
 
         # 3. MASTER FIELD LEADERBOARD
         st.markdown("### ⛳ MASTER FIELD LEADERBOARD")
         st.dataframe(pd.DataFrame(pro_field).set_index("Pos"), use_container_width=True)
 
-        # 4. MARKET SENTIMENT (Moved to Bottom)
+        # 4. MARKET SENTIMENT
         st.markdown("### 📊 MARKET SENTIMENT")
         counts = pd.Series(all_picks).value_counts()
         m_val = counts.max()
