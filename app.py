@@ -63,11 +63,11 @@ Corne van Wyk	Scottie Scheffler	Xander Schauffele	Wyndham Clark
 Reinhardt Uys	Tommy Fleetwood	Brooks Koepka	Jake Knapp
 Tyronne	Cameron Young	Xander Schauffele	Wyndham Clark
 Tyronne	Cameron Young	Scottie Scheffler	Bryson DeChambeau
-Tobie	Justin Rose	Ludvig Aberg	Bryson DeChambeau
+Tobie	Justin Rose	Ludvig Åberg	Bryson DeChambeau
 Tereza Windell	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
 Tereza Windell	Rory McIlroy	Jon Rahm	Joaquin Niemann
 Cornel Windell	Justin Rose	Aaron Rai	Jason Day
-Cornel Windell	Ludvig Aberg	Si Woo Kim	Patrick Cantlay
+Cornel Windell	Ludvig Åberg	Si Woo Kim	Patrick Cantlay
 Theuns Greyling	Jon Rahm	Scottie Scheffler	Bryson DeChambeau
 Theuns Greyling	Jon Rahm	Scottie Scheffler	Brooks Koepka
 Jacobusp1	Rory McIlroy	Tommy Fleetwood	Keegan Bradley
@@ -85,9 +85,9 @@ Braam Greyling	Russell Henley	Tyrrell Hatton	Tom Kim
 Robert	Scottie Scheffler	Tyrrell Hatton	Patrick Cantlay
 Pieter Rossouw	Tommy Fleetwood	Sam Burns	Bryson DeChambeau
 AJ Hechter	Scottie Scheffler	Chris Gotterup	Cameron Smith
-Ben Jones	Rory McIlroy	Ludvig Aberg	Corey Conners
+Ben Jones	Rory McIlroy	Ludvig Åberg	Corey Conners
 Ben Jones	Rory McIlroy	Cameron Young	Corey Conners
-Ben Jones	Russell Henley	Ludvig Aberg	Patrick Cantlay
+Ben Jones	Russell Henley	Ludvig Åberg	Patrick Cantlay
 Ben Jones	Xander Schauffele	Aaron Rai	Wyndham Clark
 Marina Jones	Rory McIlroy	Xander Schauffele	Kurt Kitayama
 Marina Jones	Rory McIlroy	Bryson DeChambeau	Kurt Kitayama
@@ -115,11 +115,11 @@ Fred Bezuidenhout	Tommy Fleetwood	Jon Rahm	Jake Knapp
 Roy Coetser	Scottie Scheffler	Chris Gotterup	Jason Day
 Kobus Rossouw	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
 Kobus Rossouw	Scottie Scheffler	Jon Rahm	Joaquin Niemann
-Kobus Rossouw	Scottie Scheffler	Ludvig Aberg	Min Woo Lee
+Kobus Rossouw	Scottie Scheffler	Ludvig Åberg	Min Woo Lee
 Kobus Rossouw	Rory McIlroy	Bryson DeChambeau	Joaquin Niemann
 Kobus Rossouw	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
 Tjaart	Cameron Young	Tyrrell Hatton	Alejandro Tosti
-Leonie Coetser	Ludvig Aberg	Viktor Hovland	Shane Lowry
+Leonie Coetser	Ludvig Åberg	Viktor Hovland	Shane Lowry
 Martin Coetser	Scottie Scheffler	Matt Fitzpatrick	Brooks Koepka
 Martin Coetser	Rory McIlroy	Xander Schauffele	Bryson DeChambeau
 Martin Coetser	Jon Rahm	Tommy Fleetwood	Brooks Koepka
@@ -133,7 +133,7 @@ Michael	Scottie Scheffler	Cameron Young	Wyndham Clark
 Etienne Roodt	Jon Rahm	Xander Schauffele	Jordan Spieth
 Deon Lappa	Justin Rose	Scottie Scheffler	Shane Lowry
 Reon Cronje	Scottie Scheffler	Justin Rose	Nicolai Hojgaard
-Kian	Scottie Scheffler	Ludvig Aberg	Bryson DeChambeau
+Kian	Scottie Scheffler	Ludvig Åberg	Bryson DeChambeau
 Derik	Patrick Reed	Sam Burns	Cameron Smith
 Derik	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
 Derik	Scottie Scheffler	Matt Fitzpatrick	Bryson DeChambeau
@@ -141,7 +141,7 @@ ZT Project Management	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
 ZT Project Management	Cameron Young	Matt Fitzpatrick	Cameron Smith
 ZT Project Management	Rory McIlroy	Justin Rose	Shane Lowry
 ZT Project Management	Tyrrell Hatton	Collin Morikawa	Min Woo Lee
-ZT Project Management	Jon Rahm	Ludvig Aberg	Shane Lowry
+ZT Project Management	Jon Rahm	Ludvig Åberg	Shane Lowry
 ZT Project Management	Xander Schauffele	Patrick Reed	Cameron Smith
 ZT Project Management	Patrick Reed	Matt Fitzpatrick	Shane Lowry
 ZT Project Management	Jon Rahm	Justin Rose	Corey Conners
@@ -155,7 +155,7 @@ Edwin	Russell Henley	Justin Rose	Joaquin Niemann
 Frederik	Rory McIlroy	Scottie Scheffler	Bryson DeChambeau
 Ralf Grotsch	Tommy Fleetwood	Tyrrell Hatton	Brooks Koepka
 Johann Lubbe	Tyrrell Hatton	Rory McIlroy	Shane Lowry
-Johann Lubbe	Tommy Fleetwood	Ludvig Aberg	Alex Smalley
+Johann Lubbe	Tommy Fleetwood	Ludvig Åberg	Alex Smalley
 Johann Lubbe	Matt Fitzpatrick	Viktor Hovland	Nicolai Hojgaard
 Dean	Matt Fitzpatrick	Rory McIlroy	Shane Lowry
 Ralf Grotsch	Cameron Young	Rory McIlroy	Bud Cauley
@@ -171,19 +171,19 @@ Johnny Lubbe	Scottie Scheffler	Tommy Fleetwood	Patrick Cantlay
 Johnny Lubbe	Rory McIlroy	Matt Fitzpatrick	Adam Scott
 Johnny Lubbe	Rory McIlroy	Jon Rahm	Joaquin Niemann
 Donald	Scottie Scheffler	Tyrrell Hatton	Jayden Schaper
-Donald	Ludvig Aberg	Tommy Fleetwood	Bryson DeChambeau
+Donald	Ludvig Åberg	Tommy Fleetwood	Bryson DeChambeau
 Donald	Viktor Hovland	Xander Schauffele	Chris Kirk
 Wynand Kruger	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
-Wynand Kruger	Rory McIlroy	Ludvig Aberg	Patrick Cantlay
+Wynand Kruger	Rory McIlroy	Ludvig Åberg	Patrick Cantlay
 Micaela Jones	Cameron Young	Maverick McNealy	Jason Day
 Eckhard Jones	Scottie Scheffler	Min Woo Lee	Patrick Cantlay
-Maricell Jones	Ludvig Aberg	Adam Scott	Bryson DeChambeau
+Maricell Jones	Ludvig Åberg	Adam Scott	Bryson DeChambeau
 Theuns Greyling	Scottie Scheffler	Rory McIlroy	Brooks Koepka
 Dossa	Scottie Scheffler	Cameron Young	Brooks Koepka
 Eugene	Scottie Scheffler	Xander Schauffele	Brooks Koepka
 Eugene	Rory McIlroy	Jon Rahm	Bryson DeChambeau
 Eugene	Cameron Young	Collin Morikawa	Wyndham Clark
-Eugene	Tommy Fleetwood	Ludvig Aberg	Joaquin Niemann
+Eugene	Tommy Fleetwood	Ludvig Åberg	Joaquin Niemann
 Owen Rynners	Tyrrell Hatton	Jon Rahm	Bryson DeChambeau
 Rikus Hattingh	Matt Fitzpatrick	Tommy Fleetwood	Gary Woodland
 Eugene	Justin Rose	Jayden Schaper	Hennie du Plessis
@@ -203,7 +203,7 @@ Deon Labuschagne	Scottie Scheffler	Xander Schauffele	Bryson DeChambeau
 Amanda	Rory McIlroy	Tyrrell Hatton	Wyndham Clark
 Amanda	Scottie Scheffler	Cameron Young	Bryson DeChambeau
 Armand	Scottie Scheffler	Rory McIlroy	Gary Woodland
-Billy Matthee	Scottie Scheffler	Ludvig Aberg	Kurt Kitayama
+Billy Matthee	Scottie Scheffler	Ludvig Åberg	Kurt Kitayama
 Johan Huyser	Rory McIlroy	Tommy Fleetwood	Jason Day
 Gerhard	Tommy Fleetwood	Rory McIlroy	Shane Lowry
 Gerhard	Rory McIlroy	Scottie Scheffler	Patrick Cantlay
@@ -211,7 +211,7 @@ Christo Killian	Collin Morikawa	Akshay Bhatia	Patrick Cantlay
 Christo Killian	Akshay Bhatia	Sam Burns	Jason Day
 Christiaan	Jon Rahm	Tyrrell Hatton	Joaquin Niemann
 Christiaan	Jon Rahm	Scottie Scheffler	Bryson DeChambeau
-Christiaan	Rory McIlroy	Ludvig Aberg	Joaquin Niemann
+Christiaan	Rory McIlroy	Ludvig Åberg	Joaquin Niemann
 Ettienne Bedeker	Sam Burns	Cameron Young	Brooks Koepka
 Ettienne Bedeker	Scottie Scheffler	Rory McIlroy	Brian Harman
 Ettienne Bedeker	Matt Fitzpatrick	Xander Schauffele	Cameron Smith
@@ -220,6 +220,7 @@ Tinus Steyn	Scottie Scheffler	Jon Rahm	Brooks Koepka
 Tinus Steyn	Rory McIlroy	Cameron Young	Bryson DeChambeau
 Cornel Windell	Scottie Scheffler	Rory McIlroy	Joaquin Niemann
 Frederik	Matt Fitzpatrick	Tyrrell Hatton	Joaquin Niemann
+
 
 """
 
