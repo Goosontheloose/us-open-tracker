@@ -43,161 +43,184 @@ st.markdown("""
 
 # --- 2. DATA ---
 RAW_DATA = """
-AJ Hechter 1	Matt Fitzpatrick	Tyrrell Hatton	Min Woo Lee
-AJ Hechter 2	Scottie Scheffler	Chris Gotterup	Cameron Smith
-Anton (Entry 1)	Scottie Scheffler	Matt Fitzpatrick	Dustin Johnson
-Anton (Entry 2)	Rory McIlroy	Tyrrell Hatton	Shane Lowry
-Anton (Entry 3)	Justin Rose	Xander Schauffele	Bryson DeChambeau
-Anton (Entry 4)	Scottie Scheffler	Rory McIlroy	Shane Lowry
-Armand Entry 1	Scottie Scheffler	Rory McIlroy	Gary Woodland
-Armand (Entry 3)	Scottie Scheffler	Matt Fitzpatrick	Shane Lowry
-Armand (Entry 2)	Cameron Young	Tommy Fleetwood	Brian Harman
-Bedekers 2	Rory McIlroy	Jon Rahm	Cameron Smith
-Ben Jones (Entry 1)	Rory McIlroy	Ludvig Åberg	Corey Conners
-Ben Jones (Entry 2)	Rory McIlroy	Cameron Young	Corey Conners
-Ben Jones (Entry 3)	Russell Henley	Ludvig Åberg	Patrick Cantlay
-Ben Jones(Entry 4)	Xander Schauffele	Aaron Rai	Wyndham Clark
-Ben Ras (Entry 1)	Scottie Scheffler	Matt Fitzpatrick	Wyndham Clark
-Ben Ras (Entry 2)	Chris Gotterup	Cameron Young	Bryson DeChambeau
-Benno vd Westhuizen (Entry 1)	Scottie Scheffler	Cameron Young	Brooks Koepka
-Benno vd Westhuizen (Entry 2)	Rory McIlroy	Bryson DeChambeau	Cameron Young
-Billy Matthee	Scottie Scheffler	Ludvig Åberg	Kurt Kitayama
-Braam Greyling 1	Scottie Scheffler	Cameron Young	Bryson DeChambeau
-Braam Greyling 2	Rory McIlroy	Russell Henley	Wyndham Clark
-Braam Greyling 3	Matt Fitzpatrick	Tommy Fleetwood	Patrick Cantlay
-Braam Greyling 4	Scottie Scheffler	Rory McIlroy	Brooks Koepka
-Braam Greyling 5	Russell Henley	Tyrrell Hatton	Tom Kim
-Christiaan Daniels 1	Patrick Reed	Justin Thomas	Keegan Bradley
-Christiaan Daniels 2	Scottie Scheffler	Sam Burns	Wyndham Clark
-Corne van Wyk 1	Rory McIlroy	Tommy Fleetwood	Shane Lowry
-Corne van Wyk 2	Scottie Scheffler	Xander Schauffele	Wyndham Clark
-Cornel 1	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
-Cornel 2	Rory McIlroy	Jon Rahm	Joaquin Niemann
-Dean	Matt Fitzpatrick	Rory McIlroy	Shane Lowry
-Dean Steinhobel (Entry 1)	Justin Rose	Xander Schauffele	Wyndham Clark
-Dean Steinhobel (Entry 2)	Scottie Scheffler	Jon Rahm	Joaquin Niemann
-Dean Steinhobel (Entry 3)	Justin Thomas	Dustin Johnson	Shane Lowry
-Dean Steinhobel (Entry 4)	Jon Rahm	Jordan Spieth	Cameron Smith
-Deon 1	Scottie Scheffler	Rory McIlroy	Patrick Cantlay
-Deon 2	Scottie Scheffler	Xander Schauffele	Bryson DeChambeau
-Amanda 1	Rory McIlroy	Tyrrell Hatton	Wyndham Clark
-Deon Lappa	Shane Lowry	Justin Rose	Scottie Scheffler
-Derick Kunz	Scottie Scheffler	Ben Kohles	Rory McIlroy
-Derik (Entry 1)	Patrick Reed	Cameron Smith	Sam Burns
-Derik (Entry 2)	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
-Derik (Entry 3)	Scottie Scheffler	Matt Fitzpatrick	Justin Rose
-Amanda 2	Scottie Scheffler	Cameron Young	Bryson DeChambeau
-Donald (Entry 1)	Scottie Scheffler	Tyrrell Hatton	Jayden Schaper
-Donald (Entry 2)	Bryson DeChambeau	Ludvig Åberg	Tommy Fleetwood
-Donald (Entry 3)	Chris Kirk	Viktor Hovland	Xander Schauffele
-DOSSA	Scottie Scheffler	Cameron Young	Brooks Koepka
-Duncan (Entry 1)	Scottie Scheffler	Bryson DeChambeau	Xander Schauffele
-Duncan (Entry 2)	Scottie Scheffler	Matt Fitzpatrick	Shane Lowry
-Eckhard Jones	Scottie Scheffler	Min Woo Lee	Patrick Cantlay
-Edwin (Entry 1)	Rory McIlroy	Matt Fitzpatrick	Brooks Koepka
-Edwin (Entry 2)	Scottie Scheffler	Cameron Young	Bryson DeChambeau
-Edwin (Entry 3)	Russell Henley	Justin Rose	Joaquin Niemann
-Etienne Roodt	Jon Rahm	Xander Schauffele	Jordan Spieth
-Eugene (Entry 1)	Scottie Scheffler	Xander Schauffele	Brooks Koepka
-Eugene (Entry 2)	Rory McIlroy	Jon Rahm	Bryson DeChambeau
-Eugene (Entry 3)	Cameron Young	Collin Morikawa	Wyndham Clark
-Eugene (Entry 4)	Tommy Fleetwood	Ludvig Åberg	Joaquin Niemann
-Eugene (Entry 5)	Justin Rose	Jayden Schaper	Du Plessis
-Francois	Rory McIlroy	Tommy Fleetwood	Cameron Smith
-Fred Bezuidenhout (Span 1)	Cameron Young	Matt Fitzpatrick	Max Greyserman
-Fred Bezuidenhout (Span 2)	Tommy Fleetwood	Jon Rahm	Jake Knapp
-Gerhard 1	Tommy Fleetwood	Rory McIlroy	Shane Lowry
-Gerhard 2	Rory McIlroy	Scottie Scheffler	Patrick Cantlay
-Gustav (Entry 1)	Patrick Reed	J.J. Spaun	Max Greyserman
-Gustav (Entry 2)	Bryson DeChambeau	Rory McIlroy	Scottie Scheffler
-Gustav (Entry 3)	Russell Henley	Tommy Fleetwood	Jordan Spieth
-Gustav Smit	Cameron Young	Sam Burns	Jason Day
-Hendri	Scottie Scheffler	Rory McIlroy	Brooks Koepka
-Jaco Greeff (Entry 1)	Rory McIlroy	Scottie Scheffler	Brooks Koepka
-Jaco Greeff (Entry 2)	Rory McIlroy	Cameron Young	Bryson DeChambeau
-Jaco Greeff (Entry 3)	Scottie Scheffler	Jon Rahm	Wyndham Clark
-Jaco Greeff (Entry 4)	Scottie Scheffler	Russell Henley	Wyndham Clark
-Jaco Greeff (Entry 5)	Rory McIlroy	Scottie Scheffler	Wyndham Clark
-Jacobus P	Rory McIlroy	Tommy Fleetwood	Keegan Bradley
-Jason Bithrey	Scottie Scheffler	Rory McIlroy	Brooks Koepka
-Johan Huyser	Rory McIlroy	Tommy Fleetwood	Jason Day
-Johann Lubbe (Entry 1)	Tyrrell Hatton	Rory McIlroy	Shane Lowry
-Johann Lubbe (Entry 2)	Tommy Fleetwood	Ludvig Åberg	Alex Smalley
-Johann Lubbe (Entry 3)	Matt Fitzpatrick	Viktor Hovland	Nicolai Højgaard
-Johann Lubbe (Entry 4)	Scottie Scheffler	Rory McIlroy	Keegan Bradley
-Johnny Lubbe (Entry 1)	Scottie Scheffler	Rory McIlroy	Shane Lowry
-Johnny Lubbe (Entry 2)	Scottie Scheffler	Tommy Fleetwood	Patrick Cantlay
-Johnny Lubbe (Entry 3)	Rory McIlroy	Matt Fitzpatrick	Adam Scott
-Johnny Lubbe (Entry 4)	Rory McIlroy	Jon Rahm	Joaquin Niemann
-Kian	Scottie Scheffler	Ludvig Åberg	Bryson DeChambeau
-Kobus Rossouw (Entry 1)	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
-Kobus Rossouw (Entry 2)	Scottie Scheffler	Jon Rahm	Joaquin Niemann
-Kobus Rossouw (Entry 3)	Scottie Scheffler	Ludvig Åberg	Min Woo Lee
-Kobus Rossouw (Entry 4)	Rory McIlroy	Bryson DeChambeau	Joaquin Niemann
-Kobus Rossouw (Entry 5)	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
-Lauren Coetser	Scottie Scheffler	Xander Schauffele	Joaquin Niemann
-Leonie 	Ludvig Åberg	Viktor Hovland	Shane Lowry
-Maricell Jones	Ludvig Åberg	Adam Scott	Bryson DeChambeau
-Marina Jones (Entry 1)	Rory McIlroy	Xander Schauffele	Kurt Kitayama
-Marina Jones (Entry 2)	Rory McIlroy	Bryson DeChambeau	Kurt Kitayama
-Martin (1)	Scottie Scheffler	Matt Fitzpatrick	Brooks Koepka
-Martin (2)	Rory McIlroy	Xander Schauffele	Bryson DeChambeau
-Martin (3)	Jon Rahm	Tommy Fleetwood	Brooks Koepka
-Martin (4)	Matt Fitzpatrick	Rory McIlroy	Alex Fitzpatrick
-Martin Roelofse	Tommy Fleetwood	Patrick Reed	Wyndham Clark
-Micaela Jones	Cameron Young	Maverick McNealy	Jason Day
-Michael (Entry 1)	Rory McIlroy	Justin Rose	Bryson DeChambeau
-Michael (Entry 2)	Scottie Scheffler	Cameron Young	Wyndham Clark
-Morne Howell (Entry 1)	Rory McIlroy	Scottie Scheffler	Brooks Koepka
-Morne Howell (Entry 2)	Tommy Fleetwood	Scottie Scheffler	Bryson DeChambeau
-Nico Noeth	Rory McIlroy	Patrick Reed	Ryan Fox
-Owen Rynners 1	Tyrrell Hatton	Jon Rahm	Bryson DeChambeau
-Owen Rynners 3	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
-Owen Rynners 2	Rory McIlroy	Russell Henley	Corey Conners
-Peet 1	Scottie Scheffler	Rory McIlroy	Patrick Reed
-Peet 2	Scottie Scheffler	Rory McIlroy	Brooks Koepka
-Pierre Rynners (Entry 1)	Scottie Scheffler	Xander Schauffele	Brian Harman
-Pierre Rynners (Entry 2)	Justin Rose	Sam Burns	Jason Day
-Pieter Rossouw	Tommy Fleetwood	Bryson DeChambeau	Sam Burns
-Ralf Grotsch (Entry 4)	J.J. Spaun	Sam Burns	Scottie Scheffler
-Ralf Grötsch (Entry 1)	Brooks Koepka	Tommy Fleetwood	Tyrrell Hatton
-Ralf Grötsch (Entry 2)	Scottie Scheffler	Xander Schauffele	Jon Rahm
-Ralf Grötsch (Entry 3)	Cameron Young	Bud Cauley	Rory McIlroy
+Ettienne Bedeker	Scottie Scheffler	Rory McIlroy	Alex Fitzpatrick
+Brendon	Jon Rahm	Jake Knapp	Brooks Koepka
+Heino Noeth	Rory McIlroy	Tommy Fleetwood	Joaquin Niemann
+Thomas Potgieter	Scottie Scheffler	Russell Henley	Patrick Cantlay
+Thomas Potgieter	Tommy Fleetwood	Hideki Matsuyama	Corey Conners
+Thomas Potgieter	Rory McIlroy	Jon Rahm	Bryson DeChambeau
+Etienne Roodt	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
+Hannes du Plessis	Rory McIlroy	Tyrrell Hatton	Brooks Koepka
+Kobus du Plessis	Tyrrell Hatton	Matt Fitzpatrick	Corey Conners
+Wimpie Barnard	Scottie Scheffler	Kristoffer Reitan	Wyndham Clark
+Laurence	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
+Werner Moolman	Scottie Scheffler	Cameron Young	Wyndham Clark
 Ranon Fouche	Scottie Scheffler	Xander Schauffele	Bryson DeChambeau
-Reinhardt Uys	Tommy Fleetwood	Brooks Koepka	Jake Knapp
-Reon Cronje	Scottie Scheffler	Justin Rose	Nicolai Højgaard
-Rikus Hattingh	Matt Fitzpatrick	Tommy Fleetwood	Gary Woodland
-Robert	Scottie Scheffler	J.J. Spaun	Rory McIlroy
-Robert 2	Scottie Scheffler	Jon Rahm	Joaquin Niemann
-Robert 3	Scottie Scheffler	Tyrrell Hatton	Patrick Cantlay
-Rowan (Entry 1)	Scottie Scheffler	Russell Henley	Shane Lowry
-Rowan (Entry 2)	Xander Schauffele	Matt Fitzpatrick	Sahith Theegala
-Roy Coetser	Scottie Scheffler	Chris Gotterup	Jason Day
 Ruan Brits	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
-Shaun Rynners	Rory McIlroy	Tommy Fleetwood	Wyndham Clark
-Tereza (Entry 1)	Justin Rose	Aaron Rai	Jason Day
-Tereza (Entry 2)	Ludvig Åberg	Si Woo Kim	Patrick Cantlay
-Theuns (Entry 2)	Jon Rahm	Scottie Scheffler	Bryson DeChambeau
-Theuns (Entry 3)	Scottie Scheffler	Jon Rahm	Brooks Koepka
-Theuns Greyling	Scottie Scheffler	Rory McIlroy	Brooks Koepka
+Corne van Wyk	Rory McIlroy	Tommy Fleetwood	Shane Lowry
 Theuns Greyling	Scottie Scheffler	Matt Fitzpatrick	Bryson DeChambeau
+Corne van Wyk	Scottie Scheffler	Xander Schauffele	Wyndham Clark
+Reinhardt Uys	Tommy Fleetwood	Brooks Koepka	Jake Knapp
+Tyronne	Cameron Young	Xander Schauffele	Wyndham Clark
+Tyronne	Cameron Young	Scottie Scheffler	Bryson DeChambeau
+Tobie	Justin Rose	Ludvig Aberg	Bryson DeChambeau
+Tereza Windell	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
+Tereza Windell	Rory McIlroy	Jon Rahm	Joaquin Niemann
+Cornel Windell	Justin Rose	Aaron Rai	Jason Day
+Cornel Windell	Ludvig Aberg	Si Woo Kim	Patrick Cantlay
+Theuns Greyling	Jon Rahm	Scottie Scheffler	Bryson DeChambeau
+Theuns Greyling	Jon Rahm	Scottie Scheffler	Brooks Koepka
+Jacobusp1	Rory McIlroy	Tommy Fleetwood	Keegan Bradley
+Robert	Scottie Scheffler	Jon Rahm	Joaquin Niemann
+Ettienne Bedeker	Rory McIlroy	Jon Rahm	Cameron Smith
+Anton 	Scottie Scheffler	Matt Fitzpatrick	Dustin Johnson
+Anton	Rory McIlroy	Tyrrell Hatton	Shane Lowry
+Anton	Justin Rose	Xander Schauffele	Bryson DeChambeau
+Anton	Scottie Scheffler	Rory McIlroy	Shane Lowry
+Braam Greyling	Scottie Scheffler	Cameron Young	Bryson DeChambeau
+Braam Greyling	Rory McIlroy	Russell Henley	Wyndham Clark
+Braam Greyling	Matt Fitzpatrick	Tommy Fleetwood	Patrick Cantlay
+Braam Greyling	Scottie Scheffler	Rory McIlroy	Brooks Koepka
+Braam Greyling	Russell Henley	Tyrrell Hatton	Tom Kim
+Robert	Scottie Scheffler	Tyrrell Hatton	Patrick Cantlay
+Pieter Rossouw	Tommy Fleetwood	Sam Burns	Bryson DeChambeau
+AJ Hechter	Scottie Scheffler	Chris Gotterup	Cameron Smith
+Ben Jones	Rory McIlroy	Ludvig Aberg	Corey Conners
+Ben Jones	Rory McIlroy	Cameron Young	Corey Conners
+Ben Jones	Russell Henley	Ludvig Aberg	Patrick Cantlay
+Ben Jones	Xander Schauffele	Aaron Rai	Wyndham Clark
+Marina Jones	Rory McIlroy	Xander Schauffele	Kurt Kitayama
+Marina Jones	Rory McIlroy	Bryson DeChambeau	Kurt Kitayama
+Benno vd Westhuizen	Scottie Scheffler	Cameron Young	Brooks Koepka
+Benno vd Westhuizen	Rory McIlroy	Cameron Young	Bryson DeChambeau
+Rowan	Scottie Scheffler	Russell Henley	Shane Lowry
+Rowan	Xander Schauffele	Matt Fitzpatrick	Sahith Theegala
+Gustav Smit	Patrick Reed	J.J. Spaun	Max Greyserman
+Gustav Smit	Rory McIlroy	Scottie Scheffler	Bryson DeChambeau
+Gustav Smit	Russell Henley	Tommy Fleetwood	Jordan Spieth
+Hendri	Scottie Scheffler	Rory McIlroy	Brooks Koepka
+Martin Roelofse	Tommy Fleetwood	Patrick Reed	Wyndham Clark
+Gustav Smit	Cameron Young	Sam Burns	Jason Day
+Peet	Scottie Scheffler	Rory McIlroy	Rickie Fowler
+Ben Ras	Scottie Scheffler	Matt Fitzpatrick	Wyndham Clark
+Armand	Scottie Scheffler	Matt Fitzpatrick	Shane Lowry
+Armand	Cameron Young	Tommy Fleetwood	Brian Harman
+Dean Steinhobel	Justin Rose	Xander Schauffele	Wyndham Clark
+Dean Steinhobel	Scottie Scheffler	Jon Rahm	Joaquin Niemann
+Dean Steinhobel	Justin Thomas	Dustin Johnson	Shane Lowry
+Dean Steinhobel	Jon Rahm	Jordan Spieth	Cameron Smith
+Ben Ras	Chris Gotterup	Cameron Young	Bryson DeChambeau
+Fred Bezuidenhout	Cameron Young	Matt Fitzpatrick	Max Greyserman
+Fred Bezuidenhout	Tommy Fleetwood	Jon Rahm	Jake Knapp
+Roy Coetser	Scottie Scheffler	Chris Gotterup	Jason Day
+Kobus Rossouw	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
+Kobus Rossouw	Scottie Scheffler	Jon Rahm	Joaquin Niemann
+Kobus Rossouw	Scottie Scheffler	Ludvig Aberg	Min Woo Lee
+Kobus Rossouw	Rory McIlroy	Bryson DeChambeau	Joaquin Niemann
+Kobus Rossouw	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
 Tjaart	Cameron Young	Tyrrell Hatton	Alejandro Tosti
-Tobie	Justin Rose	Ludvig Åberg	Bryson DeChambeau
-Tyrone 1	Cameron Young	Wyndham Clark	Xander Schauffele
-Tyrone 2	Cameron Young	Scottie Scheffler	Bryson DeChambeau
+Leonie Coetser	Ludvig Aberg	Viktor Hovland	Shane Lowry
+Martin Coetser	Scottie Scheffler	Matt Fitzpatrick	Brooks Koepka
+Martin Coetser	Rory McIlroy	Xander Schauffele	Bryson DeChambeau
+Martin Coetser	Jon Rahm	Tommy Fleetwood	Brooks Koepka
+Martin Coetser	Matt Fitzpatrick	Rory McIlroy	Alex Fitzpatrick
+Pierre Rynners	Scottie Scheffler	Xander Schauffele	Brian Harman
+Owen Rynners	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
+Owen Rynners	Rory McIlroy	Russell Henley	Corey Conners
+Shaun Rynners	Rory McIlroy	Tommy Fleetwood	Wyndham Clark
+Michael	Rory McIlroy	Justin Rose	Bryson DeChambeau
+Michael	Scottie Scheffler	Cameron Young	Wyndham Clark
+Etienne Roodt	Jon Rahm	Xander Schauffele	Jordan Spieth
+Deon Lappa	Justin Rose	Scottie Scheffler	Shane Lowry
+Reon Cronje	Scottie Scheffler	Justin Rose	Nicolai Hojgaard
+Kian	Scottie Scheffler	Ludvig Aberg	Bryson DeChambeau
+Derik	Patrick Reed	Sam Burns	Cameron Smith
+Derik	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
+Derik	Scottie Scheffler	Matt Fitzpatrick	Bryson DeChambeau
+ZT Project Management	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
+ZT Project Management	Cameron Young	Matt Fitzpatrick	Cameron Smith
+ZT Project Management	Rory McIlroy	Justin Rose	Shane Lowry
+ZT Project Management	Tyrrell Hatton	Collin Morikawa	Min Woo Lee
+ZT Project Management	Jon Rahm	Ludvig Aberg	Shane Lowry
+ZT Project Management	Xander Schauffele	Patrick Reed	Cameron Smith
+ZT Project Management	Patrick Reed	Matt Fitzpatrick	Shane Lowry
+ZT Project Management	Jon Rahm	Justin Rose	Corey Conners
+ZT Project Management	Matt Fitzpatrick	Xander Schauffele	J.T. Poston
+Nico Noeth	Rory McIlroy	Patrick Reed	Ryan Fox
+Wynand	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
+Pierre Rynners	Justin Rose	Sam Burns	Jason Day
+Edwin	Rory McIlroy	Matt Fitzpatrick	Brooks Koepka
+Edwin	Scottie Scheffler	Cameron Young	Bryson DeChambeau
+Edwin	Russell Henley	Justin Rose	Joaquin Niemann
+Frederik	Rory McIlroy	Scottie Scheffler	Bryson DeChambeau
+Ralf Grotsch	Tommy Fleetwood	Tyrrell Hatton	Brooks Koepka
+Johann Lubbe	Tyrrell Hatton	Rory McIlroy	Shane Lowry
+Johann Lubbe	Tommy Fleetwood	Ludvig Aberg	Alex Smalley
+Johann Lubbe	Matt Fitzpatrick	Viktor Hovland	Nicolai Hojgaard
+Dean	Matt Fitzpatrick	Rory McIlroy	Shane Lowry
+Ralf Grotsch	Cameron Young	Rory McIlroy	Bud Cauley
+Jaco Greeff	Rory McIlroy	Scottie Scheffler	Brooks Koepka
+Jaco Greeff	Rory McIlroy	Cameron Young	Bryson DeChambeau
+Jaco Greeff	Scottie Scheffler	Jon Rahm	Wyndham Clark
+Jaco Greeff	Scottie Scheffler	Russell Henley	Wyndham Clark
+Jaco Greeff	Rory McIlroy	Scottie Scheffler	Wyndham Clark
+Morne Howell	Rory McIlroy	Scottie Scheffler	Brooks Koepka
+Morne Howell	Tommy Fleetwood	Scottie Scheffler	Bryson DeChambeau
+Johnny Lubbe	Scottie Scheffler	Rory McIlroy	Shane Lowry
+Johnny Lubbe	Scottie Scheffler	Tommy Fleetwood	Patrick Cantlay
+Johnny Lubbe	Rory McIlroy	Matt Fitzpatrick	Adam Scott
+Johnny Lubbe	Rory McIlroy	Jon Rahm	Joaquin Niemann
+Donald	Scottie Scheffler	Tyrrell Hatton	Jayden Schaper
+Donald	Ludvig Aberg	Tommy Fleetwood	Bryson DeChambeau
+Donald	Viktor Hovland	Xander Schauffele	Chris Kirk
+Wynand Kruger	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
+Wynand Kruger	Rory McIlroy	Ludvig Aberg	Patrick Cantlay
+Micaela Jones	Cameron Young	Maverick McNealy	Jason Day
+Eckhard Jones	Scottie Scheffler	Min Woo Lee	Patrick Cantlay
+Maricell Jones	Ludvig Aberg	Adam Scott	Bryson DeChambeau
+Theuns Greyling	Scottie Scheffler	Rory McIlroy	Brooks Koepka
+Dossa	Scottie Scheffler	Cameron Young	Brooks Koepka
+Eugene	Scottie Scheffler	Xander Schauffele	Brooks Koepka
+Eugene	Rory McIlroy	Jon Rahm	Bryson DeChambeau
+Eugene	Cameron Young	Collin Morikawa	Wyndham Clark
+Eugene	Tommy Fleetwood	Ludvig Aberg	Joaquin Niemann
+Owen Rynners	Tyrrell Hatton	Jon Rahm	Bryson DeChambeau
+Rikus Hattingh	Matt Fitzpatrick	Tommy Fleetwood	Gary Woodland
+Eugene	Justin Rose	Jayden Schaper	Hennie du Plessis
+Christiaan Daniels	Patrick Reed	Justin Thomas	Keegan Bradley
+Christiaan Daniels	Scottie Scheffler	Sam Burns	Wyndham Clark
+Lauren Coetser	Scottie Scheffler	Xander Schauffele	Joaquin Niemann
+Johann Lubbe	Scottie Scheffler	Rory McIlroy	Keegan Bradley
+27720236344	Scottie Scheffler	Rory McIlroy	Ben Kohles
+AJ Hechter	Matt Fitzpatrick	Tyrrell Hatton	Min Woo Lee
+Duncan Stevens	Scottie Scheffler	Xander Schauffele	Bryson DeChambeau
+Duncan Stevens	Scottie Scheffler	Matt Fitzpatrick	Shane Lowry
+Francois	Rory McIlroy	Tommy Fleetwood	Cameron Smith
 William Bithrey	Rory McIlroy	Justin Rose	Bryson DeChambeau
-Wynand Kruger (Entry 1)	Scottie Scheffler	Tommy Fleetwood	Bryson DeChambeau
-Wynand Kruger (Entry 2)	Rory McIlroy	Ludvig Åberg	Patrick Cantlay
-ZT Project (Entry 1)	Scottie Scheffler	Tommy Fleetwood	Shane Lowry
-ZT Project (Entry 2)	Cameron Young	Matt Fitzpatrick	Cameron Smith
-ZT Project (Entry 3)	Rory McIlroy	Justin Rose	Shane Lowry
-ZT Project (Entry 4)	Tyrrell Hatton	Collin Morikawa	Min Woo Lee
-ZT Project (Entry 5)	Jon Rahm	Ludvig Åberg	Shane Lowry
-ZT Project (Entry 6)	Xander Schauffele	Patrick Reed	Cameron Smith
-ZT Project (Entry 7)	Patrick Reed	Matt Fitzpatrick	Shane Lowry
-ZT Project (Entry 8)	Jon Rahm	Justin Rose	Corey Conners
-ZT Project (Entry 9)	Matt Fitzpatrick	Xander Schauffele	J.T. Poston
-Frederik	Rory McIlroy	Bryson DeChambeau	Scottie Scheffler
+Jason Bithrey	Scottie Scheffler	Rory McIlroy	Brooks Koepka
+Deon Labuschagne	Scottie Scheffler	Rory McIlroy	Patrick Cantlay
+Deon Labuschagne	Scottie Scheffler	Xander Schauffele	Bryson DeChambeau
+Amanda	Rory McIlroy	Tyrrell Hatton	Wyndham Clark
+Amanda	Scottie Scheffler	Cameron Young	Bryson DeChambeau
+Armand	Scottie Scheffler	Rory McIlroy	Gary Woodland
+Billy Matthee	Scottie Scheffler	Ludvig Aberg	Kurt Kitayama
+Johan Huyser	Rory McIlroy	Tommy Fleetwood	Jason Day
+Gerhard	Tommy Fleetwood	Rory McIlroy	Shane Lowry
+Gerhard	Rory McIlroy	Scottie Scheffler	Patrick Cantlay
+Christo Killian	Collin Morikawa	Akshay Bhatia	Patrick Cantlay
+Christo Killian	Akshay Bhatia	Sam Burns	Jason Day
+Christiaan	Jon Rahm	Tyrrell Hatton	Joaquin Niemann
+Christiaan	Jon Rahm	Scottie Scheffler	Bryson DeChambeau
+Christiaan	Rory McIlroy	Ludvig Aberg	Joaquin Niemann
+Ettienne Bedeker	Sam Burns	Cameron Young	Brooks Koepka
+Ettienne Bedeker	Scottie Scheffler	Rory McIlroy	Brian Harman
+Ettienne Bedeker	Matt Fitzpatrick	Xander Schauffele	Cameron Smith
+Tinus Steyn	Scottie Scheffler	Rory McIlroy	Bryson DeChambeau
+Tinus Steyn	Scottie Scheffler	Jon Rahm	Brooks Koepka
+Tinus Steyn	Rory McIlroy	Cameron Young	Bryson DeChambeau
+Cornel Windell	Scottie Scheffler	Rory McIlroy	Joaquin Niemann
+Frederik	Matt Fitzpatrick	Tyrrell Hatton	Joaquin Niemann
+
 """
 
 def get_teams(raw_text):
@@ -316,7 +339,7 @@ def main():
 
         # --- 6. THE HIVE MIND (MOVED TO BOTTOM) ---
         st.markdown("---")
-        st.markdown("### 📊 THE HIVE MIND (COMBINATIONS)")
+        st.markdown("### 📊 MOST PICKED COMBINATIONS")
         col_a, col_b = st.columns(2)
 
         # Triplets logic
