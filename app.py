@@ -285,7 +285,7 @@ def main():
                 st.markdown(f'<div class="podium-card"><div class="user-name">#{r["Rank"]} {r["User"]}</div><div class="podium-score">{disp}</div>{r["HTML"]}</div>', unsafe_allow_html=True)
 
         # 2. DERBY STANDINGS (Cleaned Table)
-               st.markdown("### DERBY STANDINGS")
+        st.markdown("### DERBY STANDINGS")
         
         # Create a list for the expanded table
         expanded_results = []
