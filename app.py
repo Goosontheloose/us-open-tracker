@@ -249,14 +249,34 @@ def get_round_dream_team(rows, round_num):
     return sorted(scored_pros, key=lambda x: x['score'])[:3]
 
 @st.cache_data(ttl=900)
+@st.cache_data(ttl=900)
 def get_data():
     url = "https://live-golf-data.p.rapidapi.com/leaderboard"
     params = {"orgId":"1", "tournId":"026", "year":"2026"}
-    headers = {"X-RapidAPI-Key": st.secrets["api_key"], "X-RapidAPI-Host": "live-golf-data.p.rapidapi.com"}
+    headers = {
+        "X-RapidAPI-Key": "213c2f2306mshe3d8b437cc34999p108477jsn6f448fb2b30c",
+        "X-RapidAPI-Host": "live-golf-data.p.rapidapi.com"
+    }
     try:
         r = requests.get(url, headers=headers, params=params)
-        return r.json().get('leaderboardRows', [])
-    except: return []
+        
+        # DEBUG: If it fails, show us why
+        if r.status_code != 200:
+            st.warning(f"API Error {r.status_code}: {r.text}")
+            return []
+            
+        data = r.json()
+        rows = data.get('leaderboardRows', [])
+        
+        if not rows:
+            st.info("Connection successful, but no leaderboard data found for US Open 2026 yet.")
+            # Let's see what keys ARE available to see if the tournament ID is wrong
+            st.write("Available data keys:", list(data.keys()))
+            
+        return rows
+    except Exception as e:
+        st.error(f"Connection Error: {e}")
+        return []
 
 TEAMS = get_teams(RAW_DATA)
 
