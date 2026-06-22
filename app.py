@@ -14,7 +14,7 @@ st.markdown("""
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@900&display=swap');
     .stApp { background-color: #F5F5F4 !important; }
     h1, h2, h3, p, span, th, td, .stMarkdown { color: #064E3B !important; font-family: 'Inter', sans-serif; }
-    .podium-card { 
+    .podium-card {
         padding: 1.2rem; border: 4px solid #064E3B; background-color: white !important; 
         box-shadow: 6px 6px 0px #064E3B; margin-bottom: 20px; display: flex; flex-direction: column;
     }
